@@ -1,4 +1,3 @@
-
 output "role" {
   description = "IAM role for the Kubernetes service account"
   value       = module.iam.role

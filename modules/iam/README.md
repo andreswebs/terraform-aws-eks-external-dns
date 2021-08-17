@@ -12,6 +12,7 @@ module "external_dns_iam" {
   source                = "github.com/andreswebs/terraform-aws-eks-external-dns//modules/iam"
   cluster_oidc_provider = var.eks_cluster_oidc_provider
   iam_role_name         = "external-dns-${var.eks_cluster_id}"
+  route53_zone_id       = var.route53_zone_id
 }
 ```
 
@@ -25,6 +26,7 @@ module "external_dns_iam" {
 | <a name="input_iam_role_name"></a> [iam\_role\_name](#input\_iam\_role\_name) | Name of the IAM role used by the external-dns Kubernetes service account | `string` | `"external-dns"` | no |
 | <a name="input_k8s_namespace"></a> [k8s\_namespace](#input\_k8s\_namespace) | Name of a namespace which will be created for deploying the resources | `string` | `"external-dns"` | no |
 | <a name="input_k8s_sa_name"></a> [k8s\_sa\_name](#input\_k8s\_sa\_name) | Name of the Kubernetes service account for external-dns | `string` | `"external-dns"` | no |
+| <a name="input_route53_zone_id"></a> [route53\_zone\_id](#input\_route53\_zone\_id) | Route53 zone ID on which external-dns is allowed to create resources | `string` | `"*"` | no |
 
 ## Modules
 
@@ -57,5 +59,7 @@ module "external_dns_iam" {
 |------|------|
 | [aws_iam_role.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
+| [aws_iam_policy_document.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
 
 [//]: # (END_TF_DOCS)

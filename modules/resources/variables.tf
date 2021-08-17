@@ -13,27 +13,34 @@ variable "k8s_namespace" {
 variable "create_namespace" {
   type        = bool
   description = "Create the Kubernetes namespace?"
-  default     = true
+  default     = false
 }
 
 variable "external_dns_image_name" {
-  type = string
+  type        = string
   description = "The full path to the external-dns container image, in the format `<registry>/<image>`"
-  default = "k8s.gcr.io/external-dns/external-dns"
+  default     = "k8s.gcr.io/external-dns/external-dns"
 }
 
 variable "external_dns_image_tag" {
-  type = string
+  type        = string
   description = "The external-dns image tag"
-  default = "v0.9.0"
+  default     = "v0.9.0"
 }
 
 variable "iam_role_arn" {
-  type = string
+  type        = string
   description = "IAM role ARN used by the Kubernetes service account"
 }
 
-variable "route53_txt_owner_zone_id" {
-  type = string
-  description = "ID of the Route53 hosted zone where TXT records for external-dns will be kept"
+variable "route53_zone_id" {
+  type        = string
+  description = "Route53 zone ID on which external-dns is allowed to create resources"
+  default     = "*"
+}
+
+variable "txt_owner_id" {
+  type        = string
+  description = "(Optional) A string used to identify the current external-dns instance in TXT records; defaults to a random string"
+  default     = ""
 }

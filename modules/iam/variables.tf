@@ -20,3 +20,9 @@ variable "iam_role_name" {
   description = "Name of the IAM role used by the external-dns Kubernetes service account"
   default     = "external-dns"
 }
+
+variable "route53_zone_id" {
+  type = string
+  description = "Route53 zone ID on which external-dns is allowed to create resources"
+  default = "*"
+}

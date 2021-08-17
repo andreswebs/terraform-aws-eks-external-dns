@@ -60,16 +60,28 @@ resource "null_resource" "k8s_namespace" {
   }
 }
 
+locals {
+  txt_owner_id_norm = var.txt_owner_id == "" ? null : var.txt_owner_id
+}
+
+resource "random_id" "txt_owner" {
+  count       = local.txt_owner_id_norm == null ? 1 : 0
+  byte_length = 8
+}
+
+locals {
+  txt_owner_id = local.txt_owner_id_norm == null ? random_id.txt_owner.hex : local.txt_owner_id_norm
+}
 
 data "kubectl_file_documents" "this" {
   depends_on = [null_resource.k8s_namespace]
   content = templatefile("${path.module}/k8s/external-dns.yml.tpl", {
-    image_name = var.external_dns_image_name
-    image_tag = var.external_dns_image_tag
+    image_name    = var.external_dns_image_name
+    image_tag     = var.external_dns_image_tag
     k8s_namespace = local.k8s_namespace
-    k8s_sa_name = var.k8s_sa_name
-    iam_role_arn = var.iam_role_arn
-    txt_owner_id = var.route53_txt_owner_zone_id
+    k8s_sa_name   = var.k8s_sa_name
+    iam_role_arn  = var.iam_role_arn
+    txt_owner_id  = local.txt_owner_id
   })
 }
 

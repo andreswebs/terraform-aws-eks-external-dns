@@ -33,8 +33,28 @@ resource "aws_iam_role" "this" {
   force_detach_policies = true
 }
 
+data "aws_partition" "current" {}
+
+data "aws_iam_policy_document" "this" {
+  statement {
+    sid       = "ChangeRecords"
+    actions   = ["route53:ChangeResourceRecordSets"]
+    resources = ["arn:${data.aws_partition.current.partition}:route53:::hostedzone/${var.route53_zone_id}"]
+  }
+
+  statement {
+    sid = "List"
+    actions = [
+      "route53:ListHostedZones",
+      "route53:ListResourceRecordSets"
+    ]
+    resources = ["*"]
+  }
+}
+
+
 resource "aws_iam_role_policy" "this" {
   name   = "external-dns-permissions"
   role   = aws_iam_role.this.id
-  policy = file("${path.module}/policies/external-dns-permissions.json")
+  policy = data.aws_iam_policy_document.this.json
 }
