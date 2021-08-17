@@ -59,6 +59,7 @@ No providers.
 | <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | >= 1.11.3 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.4.1 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.1.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1.0 |
 
 ## Resources
 

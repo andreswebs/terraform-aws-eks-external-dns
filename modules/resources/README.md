@@ -47,7 +47,7 @@ No modules.
 | <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | >= 1.11.3 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | >= 2.4.1 |
 | <a name="provider_null"></a> [null](#provider\_null) | >= 3.1.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | n/a |
+| <a name="provider_random"></a> [random](#provider\_random) | >= 3.1.0 |
 
 ## Requirements
 
@@ -57,6 +57,7 @@ No modules.
 | <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | >= 1.11.3 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.4.1 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | >= 3.1.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1.0 |
 
 ## Resources
 
