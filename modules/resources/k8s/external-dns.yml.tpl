@@ -61,8 +61,8 @@ spec:
         - name: external-dns
           image: ${image_name}:${image_tag}  # k8s.gcr.io/external-dns/external-dns:v0.9.0
           args:
-          - --source=service
-          - --source=ingress
-          - --provider=aws
-          - --registry=txt
-          - --txt-owner-id=${txt_owner_id}
+            - --source=service
+            - --source=ingress
+            - --provider=aws
+            - --registry=txt
+            - --txt-owner-id=${txt_owner_id}
